@@ -1,0 +1,36 @@
+<div class="summary">
+    <span class="country-name">{{countryName}}</span>
+    <div>
+        <span class="label">Confirmed:</span>
+        <span class="confirmed value">{{confirmedRecord?.Confirmed}}</span>
+        <span class="date">Updated: {{confirmedRecord?.Date | date : 'MMM d, y hh:mm a'}}</span>
+    </div>
+    <div>
+        <span class="label">Deaths:</span>
+        <span class="deaths value">{{confirmedRecord?.Deaths}}</span>
+        <span class="date">Updated: {{confirmedRecord?.Date | date : 'MMM d, y hh:mm a'}}</span>
+    </div>
+    <div>
+        <span class="label">Recovered:</span>
+        <span class="recovered value">{{confirmedRecord?.Recovered}}</span>
+        <span class="date">Updated: {{confirmedRecord?.Date | date : 'MMM d, y hh:mm a'}}</span>
+    </div>
+</div>
+<hr>
+<mat-tab-group mat-stretch-tabs>
+    <mat-tab label="Confirmed">
+        <ng-template matTabContent>
+            <app-chart title="Confirmed" [country]="countrySlug"></app-chart>
+        </ng-template>
+    </mat-tab>
+    <mat-tab label="Deaths">
+        <ng-template matTabContent>
+            <app-chart title="Deaths" [country]="countrySlug"></app-chart>
+        </ng-template>
+    </mat-tab>
+    <mat-tab label="Recovered">
+        <ng-template matTabContent>
+            <app-chart title="Recovered" [country]="countrySlug"></app-chart>
+        </ng-template>
+    </mat-tab>
+</mat-tab-group>

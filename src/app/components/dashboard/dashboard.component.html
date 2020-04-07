@@ -1,0 +1,55 @@
+<div class="summary">
+    This is a dashboard which gives an overall view on the Covid-19 cases all over the world. <br>
+    The below stats are as on <strong> {{asOnDate | date : 'MMM d, y hh:mm a'}}</strong>. For live and detailed stats, click on the country name
+</div>
+
+<div class="stats">
+    <div>
+        <span class="confirmed value">{{totalCases}}</span>
+        <span class="label">Total confirmed</span>
+    </div>
+    <div>
+        <span class="deaths value">{{totalDeaths}}</span>
+        <span class="label">Total deaths</span>
+    </div>
+    <div>
+        <span class="recovered value">{{totalRecovered}}</span>
+        <span class="label">Total recovered</span>
+    </div>
+</div>
+
+<div *ngIf="countriesSummary.length !== 0; else emptyDiv" class="table-container">
+    <table mat-table [dataSource]="displayItems" class="mat-elevation-z8">
+        <ng-container matColumnDef="no">
+            <th mat-header-cell *matHeaderCellDef> # </th>
+            <td mat-cell *matCellDef="let element; let i = index"> {{(pageNumber * 10) + i + 1}} </td>
+        </ng-container>
+        <ng-container matColumnDef="country">
+            <th mat-header-cell *matHeaderCellDef> Country </th>
+            <td mat-cell *matCellDef="let element"><a [routerLink]="'/live/' + element.Slug"> {{element.Country}} </a></td>
+        </ng-container>
+        <ng-container matColumnDef="confirmed">
+            <th mat-header-cell *matHeaderCellDef> Confirmed Cases </th>
+            <td mat-cell *matCellDef="let element"> {{element.TotalConfirmed}} </td>
+        </ng-container>
+        <ng-container matColumnDef="deaths">
+            <th mat-header-cell *matHeaderCellDef> Deaths </th>
+            <td mat-cell *matCellDef="let element"> {{element.TotalDeaths}} </td>
+        </ng-container>
+        <ng-container matColumnDef="recovered">
+            <th mat-header-cell *matHeaderCellDef> Recovered </th>
+            <td mat-cell *matCellDef="let element"> {{element.TotalRecovered}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator 
+        [length]="countriesSummary.length"
+        [pageSize]="10"
+        (page)="pageChange($event)">
+    </mat-paginator>
+</div>
+
+<ng-template #emptyDiv>
+    Loading the data
+</ng-template>

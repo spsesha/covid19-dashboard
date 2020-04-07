@@ -1,0 +1,70 @@
+.summary {
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: 300;
+    .country-name {
+        font-size: 40px;
+        font-weight: 300;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    div {
+        min-width: 150px;
+        padding: 5px;
+        text-align: center;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 5%;
+        span {
+            display: block;
+            margin: 10px 0;
+        }
+        .label {
+            font-size: 16px;
+        }
+        .value {
+            font-size: 30px;
+            font-weight: 400;
+        }
+        .value.confirmed {
+            color: blue;
+        }
+        .value.deaths {
+            color: red;
+        }
+        .value.recovered {
+            color: green;
+        }
+        .date {
+            font-size: 10px;
+        }
+    }
+    div:before {
+        content: "";
+        display: block;
+        padding-top: 10%;
+    }
+    div:after {
+        content: "";
+        display: block;
+        padding-bottom: 10%;
+    }
+}
+
+hr {
+    margin: 25px 0px;
+}
+
+@media only screen and (max-width: 600px) {
+    .summary {
+        flex-direction: column;
+        align-items: center;
+        .country-name {
+            margin-bottom: 25px;
+        }
+        div {
+            min-width: 200px;
+            margin-bottom: 10px;
+        }
+    }
+}
